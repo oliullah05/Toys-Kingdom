@@ -4,7 +4,7 @@ import { authContext } from '../../Proverders/AuthProverders';
 import { useContext } from 'react';
 
 const LogIn = () => {
-const {logInByGoogle,LogInByGithub}=useContext(authContext)
+const {logInByGoogle,LogInByGithub,logInByEmailPassword}=useContext(authContext)
 
 
 
@@ -22,7 +22,21 @@ const handleLogin =(e)=>{
     const email = form.email.value;
     const password = form.password.value;
     
-    console.log(email,password);
+    logInByEmailPassword(email,password)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+     console.log(user);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+    });
+
+
+
+
 
 }
 

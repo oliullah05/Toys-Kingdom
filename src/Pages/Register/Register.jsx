@@ -1,11 +1,14 @@
 
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { authContext } from '../../Proverders/AuthProverders';
+
 
 const Register = () => {
 
+const {RegisterByEmailPassword,addPhotoAndDisplayName,user}=useContext(authContext)
 
-
-
+console.log(user);
 const handleRegister =(e)=>{
     e.preventDefault();
     const form = e.target ;
@@ -14,6 +17,26 @@ const handleRegister =(e)=>{
     const email = form.email.value;
     const password = form.password.value;
     console.log(name,photoUrl,password,email);
+
+    RegisterByEmailPassword(email,password)
+    .then((userCredential) => {
+     
+     
+
+
+      addPhotoAndDisplayName(name,photoUrl)
+  
+    })
+    .catch((error) => {
+    
+      const errorMessage = error.message;
+   console.log(errorMessage);
+    });
+
+
+
+
+
 }
 
 
