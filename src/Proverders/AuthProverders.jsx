@@ -1,19 +1,24 @@
-import React, { createContext } from 'react';
+import  { createContext } from 'react';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-const auth = getAuth();
+import app from '../Firebase/Firebase.config';
+import { GithubAuthProvider } from "firebase/auth";
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
 
+const GithubProvider = new GithubAuthProvider();
 
 export  const authContext = createContext(null)
-const googleProvider = new GoogleAuthProvider();
 
 
 const AuthProverders = ({children}) => {
 
 const logInByGoogle = ()=>{
-    signInWithPopup(auth, googleProvider)
+  return  signInWithPopup(auth, googleProvider)
 }
 
-
+const LogInByGithub =()=>{
+    return signInWithPopup(auth, GithubProvider)
+}
 
 
 
@@ -37,7 +42,7 @@ const logInByGoogle = ()=>{
 
     const authInfo = {
         logInByGoogle,
-
+        LogInByGithub,
     }
 
     return (

@@ -1,7 +1,20 @@
 
 import { Link } from 'react-router-dom';
+import { authContext } from '../../Proverders/AuthProverders';
+import { useContext } from 'react';
 
 const LogIn = () => {
+const {logInByGoogle,LogInByGithub}=useContext(authContext)
+
+
+
+
+
+
+
+
+
+
 
 const handleLogin =(e)=>{
     e.preventDefault();
@@ -12,6 +25,43 @@ const handleLogin =(e)=>{
     console.log(email,password);
 
 }
+
+
+const handleGoogleLogIn =()=>{
+  console.log(logInByGoogle);
+    logInByGoogle()
+    .then((result) => {
+  
+        const user = result.user;
+     console.log(user);
+      }).catch((error) => {
+   
+        const errorMessage = error.message;
+     console.log(errorMessage);
+        // ...
+      });
+}
+
+const handleGithubLogIn =()=>{
+
+  LogInByGithub()
+  .then((result) => {
+
+
+    // The signed-in user info.
+    const user = result.user;
+console.log(user);
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+  
+    const errorMessage = error.message;
+console.log(errorMessage);
+    // ...
+  });
+
+  }
+
 
 
 
@@ -62,11 +112,11 @@ const handleLogin =(e)=>{
             </div> */}
           </form>
           <div className="flex flex-col lg:flex-row -mt-7 gap-3 pb-8">
-              <button  className="flex gap-2 items-center w-full justify-center mt-4 text-white rounded-lg shadow-md bg-blue-500">
+              <button onClick={handleGoogleLogIn}  className="flex gap-2 items-center w-full justify-center mt-4 text-white rounded-lg shadow-md bg-blue-500">
                 
                 <span className="py-3 text-center text-white font-bold">Google</span>
               </button>
-              <button className="flex gap-2 items-center w-full justify-center mt-4 text-white rounded-lg shadow-md bg-gray-900">
+              <button onClick={handleGithubLogIn} className="flex gap-2 items-center w-full justify-center mt-4 text-white rounded-lg shadow-md bg-gray-900">
           
                 <span className="py-3 text-center text-white font-bold">Github</span>
               </button>
