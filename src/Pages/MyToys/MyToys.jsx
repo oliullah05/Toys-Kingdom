@@ -8,6 +8,7 @@ const MyToys = () => {
 const {user}=useContext(authContext)
 // console.log(user);
 const [myToys ,setMyToys]=useState([])
+// console.log(myToys);
 const [toggle,setToggle]=useState(true)
 // console.log(myToys);
 useEffect(()=>{

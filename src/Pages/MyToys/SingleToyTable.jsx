@@ -28,6 +28,19 @@ const handleDelete =(id)=>{
 }
 
 
+const handleEdit =(id)=>{
+   
+    fetch(`http://localhost:5000/edit/${id}`,{
+        method:"PUT"
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        if(data.deletedCount){
+            setToggle(!toggle)
+          
+        }
+    })
+}
 
 
 
@@ -68,7 +81,7 @@ const handleDelete =(id)=>{
              <a href="" className=" text-black font-semibold dark:text-blue-500 ">$ {price}</a>
          </td>
          <th >
-             <Link  className="text-sm text-blue-500 px-6 py-4 font-semibold dark:text-blue-500 hover:underline">
+             <Link to={`/edit/${_id}`} className="text-sm text-blue-500 px-6 py-4 font-semibold dark:text-blue-500 hover:underline">
                 edit
              </Link>
              <Link onClick={()=>handleDelete(`${_id}`)} className="text-sm text-blue-500 px-6 py-4 font-semibold dark:text-blue-500 hover:underline">
