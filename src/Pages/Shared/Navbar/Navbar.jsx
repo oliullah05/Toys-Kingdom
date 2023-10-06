@@ -34,6 +34,7 @@ const handleLogOut =()=>{
             <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
             <Link to={`/alltoys`}><li><a>All Toys</a></li></Link>
             <Link to={`/addatoy`}><li><a>Add a Toy</a></li></Link>
+            <Link to={`/mytoys`}><li><a>My Toys</a></li></Link>
             </ul>
           </div>
           <a className="btn btn-ghost normal-case text-xl">Toy's kingdom</a>
@@ -43,6 +44,7 @@ const handleLogOut =()=>{
           <Link to={`/alltoys`}><li><a>All Toys</a></li></Link>
          
           <Link to={`/addatoy`}><li><a>Add a Toy</a></li></Link>
+          <Link to={`/mytoys`}><li><a>My Toys</a></li></Link>
           </ul>
         </div>
         <div className="navbar-end">

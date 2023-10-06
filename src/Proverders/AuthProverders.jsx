@@ -12,11 +12,12 @@ export  const authContext = createContext(null)
 
 const AuthProverders = ({children}) => {
 const [user,setUser]=useState(null)
-
+const [loading, setLoading] = useState(true)
 
 
 useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, loggedUser => {
+      setLoading(false)
         setUser(loggedUser)
     })
     return () => {
@@ -28,24 +29,29 @@ useEffect(() => {
 
 
 const logInByGoogle = ()=>{
+  setLoading(true)
   return  signInWithPopup(auth, googleProvider)
 }
 
 const LogInByGithub =()=>{
+  setLoading(true)
     return signInWithPopup(auth, GithubProvider)
 }
 
 const RegisterByEmailPassword =(email,password)=>{
+  setLoading(true)
   return  createUserWithEmailAndPassword(auth, email, password)
 }
 
 
 const logInByEmailPassword =(email,password)=>{
+  setLoading(true)
   return  signInWithEmailAndPassword(auth, email, password)
 }
 
 
 const addPhotoAndDisplayName =(displayName,photoURL)=>{
+  setLoading(true)
     updateProfile(auth.currentUser, {
         displayName: displayName, photoURL: photoURL
       }).then(() => {
@@ -62,6 +68,7 @@ const addPhotoAndDisplayName =(displayName,photoURL)=>{
 
 
 const logOut =()=>{
+  setLoading(false)
    return signOut(auth)
       
 }
