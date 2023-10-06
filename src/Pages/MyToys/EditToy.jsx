@@ -5,7 +5,7 @@ import { authContext } from '../../Proverders/AuthProverders';
 const EditToy = () => {
   const data = useLoaderData()
  
- const  {toy_name,toy_img,
+ const  {toy_name,toy_img,_id,
     price,
     sub_category,
     quantity,
@@ -15,6 +15,7 @@ const EditToy = () => {
     ratting,
     description
 }=data
+console.log(_id);
   // const id = useParams()
   // console.log(id.id);
 // const [editData,setEditData]=useState([])
@@ -35,7 +36,7 @@ const EditToy = () => {
 
     const {user} =useContext(authContext)
 
-const HandleAddToy =(e)=>{
+const HandleEdit =(e)=>{
     e.preventDefault()
     // _id,toy_name,toy_img,price,sub_category,quantity,seller_name,user_email,user_img,ratting,description,
   const form = e.target;
@@ -49,7 +50,7 @@ const HandleAddToy =(e)=>{
   const seller_name = user?.displayName;
 const user_email =user.email;
 const user_img =user.photoURL;
-const addToyData ={
+const editToyData ={
     toy_name,
     toy_img,
     price,
@@ -61,21 +62,21 @@ const addToyData ={
     ratting,
     description
 }
-// console.log(addToyData);
+console.log(editToyData);
 
-// fetch("http://localhost:5000/addtoy",{
-//   method:"POST",
-//   headers:{
-//     "content-type":"application/json"
-//   },
-//   body:JSON.stringify(addToyData)
-// })
-// .then(res=>res.json())
-// .then(data=>{
-//  if(data.insertedId){
-//   alert("add done")
-//  }
-// })
+fetch(`http://localhost:5000/edit/${_id}`,{
+  method:"PUT",
+  headers:{
+    "content-type":"application/json"
+  },
+  body:JSON.stringify(editToyData)
+})
+.then(res=>res.json())
+.then(data=>{
+if(data.modifiedCount){
+ alert(`update done`)
+}
+})
 
 
 
@@ -86,7 +87,7 @@ const addToyData ={
 
 }
     return (
-        <form onSubmit={HandleAddToy} className="h-full container mx-auto  border-lime-500 border-8" >
+        <form onSubmit={HandleEdit} className="h-full container mx-auto  border-lime-500 border-8" >
     
   
   
