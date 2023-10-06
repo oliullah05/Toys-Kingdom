@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { authContext } from '../../Proverders/AuthProverders';
 
-const SingleToyTable = ({singleData,index}) => {
+const SingleToyTable = ({singleData,index,toggle,setToggle}) => {
 
     const {user} =useContext(authContext)
-    console.log(user?.photoURL);
+    // console.log(user?.photoURL);
     const { _id, toy_name, toy_img, sub_category, quantity, price } = singleData;
 
 
@@ -14,13 +14,15 @@ const SingleToyTable = ({singleData,index}) => {
 
 
 const handleDelete =(id)=>{
+
     fetch(`http://localhost:5000/delete/${id}`,{
         method:"DELETE"
     })
     .then(res=>res.json())
     .then(data=>{
         if(data.deletedCount){
-            alert("deleted successfull")
+            setToggle(!toggle)
+          
         }
     })
 }

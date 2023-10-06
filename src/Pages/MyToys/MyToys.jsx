@@ -8,6 +8,7 @@ const MyToys = () => {
 const {user}=useContext(authContext)
 // console.log(user);
 const [myToys ,setMyToys]=useState([])
+const [toggle,setToggle]=useState(true)
 // console.log(myToys);
 useEffect(()=>{
    if(user){
@@ -20,7 +21,7 @@ useEffect(()=>{
         setMyToys(data);
     })
    }
-},[user])
+},[user,toggle])
 // http://localhost:5000/mytoys/mdolihasan@gmail.com
 
 
@@ -90,7 +91,7 @@ useEffect(()=>{
 
 
     {
-    myToys.map((singleData,index)=> <SingleToyTable key={singleData._id} singleData={singleData} index={index}> </SingleToyTable>)
+    myToys.map((singleData,index)=> <SingleToyTable key={singleData._id} toggle={toggle} setToggle={setToggle} singleData={singleData} index={index}> </SingleToyTable>)
 }
 
                         
