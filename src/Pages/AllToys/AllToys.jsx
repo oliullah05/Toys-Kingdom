@@ -22,7 +22,12 @@ const searchData =(e)=>{
     .then(data=> setData(data))
 }
 
-
+const handleFilter =(e)=>{
+    // console.log(e.target.value);
+    fetch(`http://localhost:5000/filter/${e.target.value}`)
+    .then(res=>res.json())
+    .then(data=>setData(data))
+}
 
     return (
         <>
@@ -44,6 +49,17 @@ const searchData =(e)=>{
        </button>
    </div>
    
+
+<div className='my-8'>filter By : <select onChange={handleFilter} className="select select-primary w-full max-w-xs ml-3">
+  <option disabled selected>All</option>
+  <option>regular-car</option>
+  <option>police-car</option>
+  <option>sports-car</option>
+</select></div>
+
+
+
+
         
         <div className="relative container mx-auto overflow-x-auto shadow-md sm:rounded-lg">
              
